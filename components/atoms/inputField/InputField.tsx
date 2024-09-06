@@ -1,16 +1,18 @@
 import { Input } from "@mantine/core";
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import styles from "./Input.module.scss";
 
 interface IInputProps {
   type: string;
   name: string;
   placeholder: string;
-  value?: () => void;
+  value: string;
+  onBlur: ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const InputField = (props: IInputProps) => {
-  const { type, name, placeholder, value } = props;
+  const { type, name, placeholder, value, onBlur, onChange } = props;
 
   return (
     <Input
@@ -19,6 +21,9 @@ export const InputField = (props: IInputProps) => {
       type={type}
       name={name}
       placeholder={placeholder}
-    ></Input>
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+    />
   );
 };
