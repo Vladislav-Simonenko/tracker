@@ -1,15 +1,15 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, FC } from "react";
 import styles from "./LoginInputs.module.scss";
 import { InputField } from "@/components";
 
 interface ILoginInputsProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
   onBlur: ChangeEventHandler<HTMLInputElement>;
-  value: { email: string; pass: string };
+  value: { email: string; password: string };
   name: { email: string; password: string };
 }
 
-export const LoginInputs = (props: ILoginInputsProps) => {
+export const LoginInputs: FC<ILoginInputsProps> = (props) => {
   const { onChange, onBlur, value, name } = props;
   return (
     <div className={styles.loginInputsContainer}>
@@ -24,7 +24,7 @@ export const LoginInputs = (props: ILoginInputsProps) => {
       <InputField
         type="password"
         name={name.password}
-        value={value.pass}
+        value={value.password}
         onBlur={onBlur}
         onChange={onChange}
         placeholder="Your Password"

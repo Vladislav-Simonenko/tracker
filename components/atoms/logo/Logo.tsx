@@ -1,8 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Logo.module.scss";
 
-export const Logo = () => {
+export const Logo: FC = () => {
   return (
     <Image
       className={styles.logo}
