@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./login.module.scss";
-import { LoginModal } from "@/components";
+import { LoginModal, LoginTemplate } from "@/components";
 
 export default function login() {
   return (
-    <div className={styles.loginContainer}>
+    <LoginTemplate>
       <LoginModal />
-    </div>
+    </LoginTemplate>
   );
 }
