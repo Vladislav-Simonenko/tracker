@@ -1,5 +1,5 @@
 import { Input } from "@mantine/core";
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, FC } from "react";
 import styles from "./Input.module.scss";
 
 interface IInputProps {
@@ -11,7 +11,7 @@ interface IInputProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const InputField = (props: IInputProps) => {
+export const InputField: FC<IInputProps> = (props) => {
   const { type, name, placeholder, value, onBlur, onChange } = props;
 
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Button } from "@mantine/core";
 
 interface IButtonLayoutProps {
@@ -7,7 +7,7 @@ interface IButtonLayoutProps {
   onClick?: () => void;
 }
 
-export const ButtonLayout = (props: IButtonLayoutProps) => {
+export const ButtonLayout: FC<IButtonLayoutProps> = (props) => {
   const { text, onClick, type } = props;
   return (
     <Button type={type} onClick={onClick}>
