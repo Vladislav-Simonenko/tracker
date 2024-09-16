@@ -1,0 +1,76 @@
+.userContainer {
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .userActions {
+    display: flex;
+    justify-content: space-between;
+    min-height: 200px;
+    max-height: 400px;
+
+    .userAction {
+      flex: 1 1 33%;
+    }
+
+    .collapsContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+}
+
+.app {
+  display: flex;
+}
+.menu {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  background-color: #333;
+  padding: 20px;
+  color: white;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu ul li a:hover {
+  color: #ff69b4;
+}
+
+.content {
+  margin-left: 25%;
+  padding: 20px;
+}
+
+.sectionContainer {
+  min-height: 100vh;
+  padding: 50px;
+  font-size: 24px;
+  background-color: #222;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

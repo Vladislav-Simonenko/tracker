@@ -11,7 +11,9 @@ export const TableRows: FC<ITableRowsProps> = (props) => {
   return elements.map((element) => (
     <Table.Tr key={element.id}>
       <Table.Td>{element.email}</Table.Td>
-      <Table.Td>{element.login}</Table.Td>
+      <Table.Td>
+        {<Link href={`/user/${element.id}`}>{element.login}</Link>}
+      </Table.Td>
       <Table.Td>
         {element.characters.length > 0
           ? element.characters.map((e) => (

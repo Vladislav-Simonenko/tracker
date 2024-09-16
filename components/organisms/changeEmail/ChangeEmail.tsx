@@ -2,11 +2,11 @@
 
 import React, { FC } from "react";
 import { Formik } from "formik";
-import { LoginInputs } from "@/components/molecules";
-import { ButtonLayout } from "@/components/atoms";
-import styles from "./LoginForm.module.scss";
+import { LoginInputs, ButtonLayout } from "@/components";
 
-export const LoginForm: FC = () => (
+import styles from "./ChangeEmail.module.scss";
+
+export const ChangeEmail: FC = () => (
   <Formik
     initialValues={{ email: "", password: "" }}
     onSubmit={(values, actions) => {
@@ -17,7 +17,7 @@ export const LoginForm: FC = () => (
     }}
   >
     {({ values, handleChange, handleBlur, handleSubmit }) => (
-      <form onSubmit={handleSubmit} className={styles.loginModalMain}>
+      <form onSubmit={handleSubmit} className={styles.changeEmailContainer}>
         <LoginInputs
           onChange={handleChange}
           onBlur={handleBlur}
