@@ -18,6 +18,7 @@ export const authSlice = createSlice({
   name: AUTH_SLICE_KEY,
   initialState,
   reducers: {
+    // FIXME: change any type
     login(state, { payload: loginResp }: PayloadAction<any>) {
       const {
         id: id,

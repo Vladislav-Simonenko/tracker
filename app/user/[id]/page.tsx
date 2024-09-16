@@ -3,7 +3,7 @@ import { MainTemplate, UserChangeActions } from "@/components";
 
 import styles from "./user.module.scss";
 
-export default function character({ params }: { params: { id: number } }) {
+export default function character({}: { params: { id: number } }) {
   return (
     <MainTemplate>
       <div className={styles.userContainer}>

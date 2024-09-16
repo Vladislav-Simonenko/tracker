@@ -3,7 +3,7 @@
 import React, { FC } from "react";
 import { Button, Collapse, Image } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { ChangeEmail, ChangePass, UserChangeAction } from "@/components";
+import { ChangePass, UserChangeAction } from "@/components";
 
 import styles from "./UserChangeActions.module.scss";
 
@@ -15,7 +15,7 @@ export const UserChangeActions: FC = () => {
       <UserChangeAction toggleEmail={toggleEmail} openEmail={openEmail} />
       <div className={styles.userAction}>
         <Button onClick={togglePass}>Password</Button>
-
+        {/* FIXME: add change email */}
         <Collapse in={openPass}>
           <ChangePass />
         </Collapse>
@@ -25,6 +25,7 @@ export const UserChangeActions: FC = () => {
         h={200}
         w="auto"
         fit="contain"
+        alt="default image"
         src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-7.png"
       />
     </div>

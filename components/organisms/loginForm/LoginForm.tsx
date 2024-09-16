@@ -8,8 +8,7 @@ import { useLoginForm } from "@/utils";
 import styles from "./LoginForm.module.scss";
 
 export const LoginForm: FC = () => {
-  const { initialFormValues, onSubmit, validationSchema, error } =
-    useLoginForm();
+  const { initialFormValues, onSubmit, validationSchema } = useLoginForm();
 
   return (
     <Formik
