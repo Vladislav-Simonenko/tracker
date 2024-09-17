@@ -8,7 +8,8 @@ import { useLoginForm } from "@/utils";
 import styles from "./LoginForm.module.scss";
 
 export const LoginForm: FC = () => {
-  const { initialFormValues, onSubmit, validationSchema } = useLoginForm();
+  const { initialFormValues, onSubmit, validationSchema, isLoading } =
+    useLoginForm();
 
   return (
     <Formik
@@ -24,7 +25,7 @@ export const LoginForm: FC = () => {
             value={values}
             name={{ email: "email", password: "password" }}
           />
-          <ButtonLayout text="Вход" type="submit" />
+          <ButtonLayout text="Вход" type="submit" disabled={isLoading} />
         </form>
       )}
     </Formik>

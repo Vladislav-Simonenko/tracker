@@ -3,6 +3,7 @@ import "./globals.scss";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import StoreProvider from "./StoreProvider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,6 +24,7 @@ export default function RootLayout({
         <StoreProvider>
           <MantineProvider>{children}</MantineProvider>
         </StoreProvider>
+        <Toaster />
       </body>
     </html>
   );
