@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BaseQueryApi } from "@reduxjs/toolkit/query";
-import { AuthState } from ".";
+import { AuthState, IAuthSlice } from ".";
 import { RootState, useAppSelector } from "@/lib";
 import { addAuthHeader } from "@/utils";
 
@@ -18,8 +18,7 @@ export const authSlice = createSlice({
   name: AUTH_SLICE_KEY,
   initialState,
   reducers: {
-    // FIXME: change any type
-    login(state, { payload: loginResp }: PayloadAction<any>) {
+    login(state, { payload: loginResp }: PayloadAction<IAuthSlice>) {
       const {
         id: id,
         email: email,
