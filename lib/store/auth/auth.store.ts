@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BaseQueryApi } from "@reduxjs/toolkit/query";
-import { AuthState, IAuthSlice } from ".";
+import { AuthState } from ".";
 import { RootState, useAppSelector } from "@/lib";
 import { addAuthHeader } from "@/utils";
 
@@ -18,12 +18,12 @@ export const authSlice = createSlice({
   name: AUTH_SLICE_KEY,
   initialState,
   reducers: {
-    login(state, { payload: loginResp }: PayloadAction<IAuthSlice>) {
+    login(state, { payload: loginResp }: PayloadAction<any>) {
       const {
         id: id,
         email: email,
-        access_token: accessToken,
-        refresh_token: refreshToken,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
       } = loginResp;
       return {
         ...state,
