@@ -2,15 +2,14 @@
 
 import React, { FC } from "react";
 import { Formik } from "formik";
-import { RegisterInputs } from "@/components/molecules";
-import { ButtonLayout } from "@/components/atoms";
-import { useRegisterForm } from "@/utils";
+import { LoginInputs, ButtonLayout } from "@/components";
+import { useLoginForm } from "@/utils";
 
-import styles from "./RegisterForm.module.scss";
+import styles from "./LoginForm.module.scss";
 
-export const RegisterForm: FC = () => {
+export const LoginForm: FC = () => {
   const { initialFormValues, onSubmit, validationSchema, isLoading } =
-    useRegisterForm();
+    useLoginForm();
 
   return (
     <Formik
@@ -20,18 +19,13 @@ export const RegisterForm: FC = () => {
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (
         <form onSubmit={handleSubmit} className={styles.loginModalMain}>
-          <RegisterInputs
+          <LoginInputs
             onChange={handleChange}
             onBlur={handleBlur}
             value={values}
-            name={{
-              email: "email",
-              login: "login",
-              password: "password",
-              confirmPassword: "confirmPassword",
-            }}
+            name={{ email: "email", password: "password" }}
           />
-          <ButtonLayout text="Регистрация" type="submit" disabled={isLoading} />
+          <ButtonLayout text="Вход" type="submit" disabled={isLoading} />
         </form>
       )}
     </Formik>

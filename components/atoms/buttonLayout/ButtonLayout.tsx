@@ -5,12 +5,13 @@ interface IButtonLayoutProps {
   text: string;
   type: "button" | "submit" | "reset" | undefined;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 export const ButtonLayout: FC<IButtonLayoutProps> = (props) => {
-  const { text, onClick, type } = props;
+  const { text, onClick, type, disabled } = props;
   return (
-    <Button type={type} onClick={onClick}>
+    <Button type={type} onClick={onClick} disabled={disabled}>
       {text}
     </Button>
   );
