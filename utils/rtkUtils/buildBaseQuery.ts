@@ -28,7 +28,6 @@ export const buildBaseQueryWithReauthFunc =
       { maxRetries: 2 }
     );
 
-    // wait until the mutex is available without locking it
     await mutex.waitForUnlock();
 
     let result = await baseQuery(args, api, extraOptions);
@@ -53,7 +52,6 @@ export const buildBaseQueryWithReauthFunc =
         return result;
       }
 
-      // checking whether the mutex is locked
       if (!mutex.isLocked()) {
         const release = await mutex.acquire();
 
@@ -69,17 +67,14 @@ export const buildBaseQueryWithReauthFunc =
           );
           if (refreshResult.data) {
             api.dispatch(login(refreshResult.data));
-            // retry the initial query
             result = await baseQuery(args, api, extraOptions);
           } else {
             api.dispatch(logout());
           }
         } finally {
-          // release must be called once the mutex should be released again.
           release();
         }
       } else {
-        // wait until the mutex is available without locking it
         await mutex.waitForUnlock();
         result = await baseQuery(args, api, extraOptions);
       }
