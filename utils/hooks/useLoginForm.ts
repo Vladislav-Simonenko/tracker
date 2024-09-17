@@ -29,6 +29,7 @@ export const useLoginForm = (): TUseLoginForm => {
   const onSubmit = async (data: LoginUserDto) => {
     try {
       const jwtResponse = await loginRequest({ loginUserDto: data }).unwrap();
+      console.log(jwtResponse);
 
       if (jwtResponse) {
         dispatch(login(jwtResponse));

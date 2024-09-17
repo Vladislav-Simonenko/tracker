@@ -56,14 +56,14 @@ const injectedRtkApi = api.injectEndpoints({
         body: queryArg.resetPasswordDto,
       }),
     }),
-    authControllerRefreshToken: build.mutation<
-      AuthControllerRefreshTokenApiResponse,
-      AuthControllerRefreshTokenApiArg
+    authControllerrefresh_token: build.mutation<
+      AuthControllerrefresh_tokenApiResponse,
+      AuthControllerrefresh_tokenApiArg
     >({
       query: (queryArg) => ({
         url: `/api/auth/refresh-token`,
         method: "POST",
-        body: queryArg.refreshTokenDto,
+        body: queryArg.refresh_tokenDto,
       }),
     }),
     authControllerLogout: build.mutation<
@@ -149,9 +149,9 @@ export type AuthControllerResetPasswordApiResponse = unknown;
 export type AuthControllerResetPasswordApiArg = {
   resetPasswordDto: ResetPasswordDto;
 };
-export type AuthControllerRefreshTokenApiResponse = unknown;
-export type AuthControllerRefreshTokenApiArg = {
-  refreshTokenDto: RefreshTokenDto;
+export type AuthControllerrefresh_tokenApiResponse = unknown;
+export type AuthControllerrefresh_tokenApiArg = {
+  refresh_tokenDto: refresh_tokenDto;
 };
 export type AuthControllerLogoutApiResponse = unknown;
 export type AuthControllerLogoutApiArg = void;
@@ -205,9 +205,9 @@ export type ResetPasswordDto = {
   /** New password */
   newPassword: string;
 };
-export type RefreshTokenDto = {
+export type refresh_tokenDto = {
   /** Refresh token */
-  refreshToken: string;
+  refresh_token: string;
 };
 export type CreateUserDto = {
   /** The email of the user */
@@ -244,7 +244,7 @@ export const {
   useAuthControllerGetProfileQuery,
   useAuthControllerForgotPasswordMutation,
   useAuthControllerResetPasswordMutation,
-  useAuthControllerRefreshTokenMutation,
+  useAuthControllerrefresh_tokenMutation,
   useAuthControllerLogoutMutation,
   useUsersControllerCreateMutation,
   useUsersControllerFindAllQuery,

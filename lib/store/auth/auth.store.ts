@@ -10,8 +10,8 @@ type MaybePromise<T> = T | Promise<T>;
 export const initialState: AuthState = {
   id: "",
   email: null,
-  accessToken: null,
-  refreshToken: null,
+  access_token: null,
+  refresh_token: null,
 };
 
 export const authSlice = createSlice({
@@ -22,15 +22,15 @@ export const authSlice = createSlice({
       const {
         id: id,
         email: email,
-        accessToken: accessToken,
-        refreshToken: refreshToken,
+        access_token: access_token,
+        refresh_token: refresh_token,
       } = loginResp;
       return {
         ...state,
         id,
         email,
-        accessToken,
-        refreshToken,
+        access_token,
+        refresh_token,
       };
     },
     logout(state) {
@@ -38,22 +38,22 @@ export const authSlice = createSlice({
         ...state,
         id: "",
         email: null,
-        accessToken: null,
-        refreshToken: null,
+        access_token: null,
+        refresh_token: null,
       };
     },
   },
 });
 
 export const selectAuth = (state: RootState): AuthState => state.auth;
-export const selectAccessToken = (state: RootState): string | null =>
-  selectAuth(state).accessToken;
-export const selectRefreshToken = (state: RootState): string | null =>
-  selectAuth(state).refreshToken;
+export const selectaccess_token = (state: RootState): string | null =>
+  selectAuth(state).access_token;
+export const selectrefresh_token = (state: RootState): string | null =>
+  selectAuth(state).refresh_token;
 
 export const useIsAuthorized = (): boolean => {
-  const accessToken = useAppSelector(selectAccessToken);
-  return Boolean(accessToken);
+  const access_token = useAppSelector(selectaccess_token);
+  return Boolean(access_token);
 };
 
 export const { login, logout } = authSlice.actions;
@@ -63,7 +63,7 @@ export const setAuthTokenToRequest: (
   api: Pick<BaseQueryApi, "getState" | "extra" | "endpoint" | "type" | "forced">
 ) => MaybePromise<Headers> = (headers, { getState }) => {
   const rootState = getState() as RootState;
-  const token = selectAccessToken(rootState);
+  const token = selectaccess_token(rootState);
   addAuthHeader(headers, token);
   return headers;
 };
