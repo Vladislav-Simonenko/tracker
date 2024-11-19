@@ -1,0 +1,20 @@
+.characterCoinsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  .characterCoinsContent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+
+    .characterCoinsImageContainer {
+      .characterCoinsImage {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+    }
+  }
+}

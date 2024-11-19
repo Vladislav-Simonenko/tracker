@@ -8,6 +8,7 @@ import { ObjectSchema } from "yup";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { ILoginValidationSchema, loginValidationSchema, toastNotify } from "..";
+import { useRouter } from "next/navigation";
 
 export type TUseLoginForm = {
   initialFormValues: LoginUserDto;
@@ -20,16 +21,18 @@ export type TUseLoginForm = {
 export const useLoginForm = (): TUseLoginForm => {
   const [loginRequest, { isLoading, error }] = useAuthControllerLoginMutation();
 
+  const router = useRouter();
+
   const dispatch = useAppDispatch();
+
   const initialFormValues: LoginUserDto = {
-    email: "uswer@example.com",
+    email: "user@example.com",
     password: "password123",
   };
 
   const onSubmit = async (data: LoginUserDto) => {
     try {
       const jwtResponse = await loginRequest({ loginUserDto: data }).unwrap();
-      console.log(jwtResponse);
 
       if (jwtResponse) {
         dispatch(login(jwtResponse));
@@ -40,6 +43,8 @@ export const useLoginForm = (): TUseLoginForm => {
         error: null,
         message: "Успешный вход",
       });
+
+      router?.push("/");
     } catch (error: any) {
       toastNotify({
         toastType: "error",

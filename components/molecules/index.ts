@@ -6,3 +6,4 @@ export * from "./userActions";
 export * from "./tableHead";
 export * from "./tableRows";
 export * from "./userChangeAction";
+export * from "./characterCoins";

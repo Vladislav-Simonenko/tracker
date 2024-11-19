@@ -4,14 +4,23 @@ import {
   StateFromReducersMapObject,
 } from "@reduxjs/toolkit";
 import { AUTH_SLICE_KEY, authSlice, AuthState } from "./store/auth";
-import { API_KEY, trackerSprilApi } from "./api";
+import {
+  API_KEY,
+  HEROES_SLICE_KEY,
+  heroSlice,
+  trackerSprilApi,
+  USERS_SLICE_KEY,
+  usersSlice,
+} from "./api";
 import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { storage } from "./storage";
 
 const reducer = {
   [API_KEY]: trackerSprilApi.reducer,
   [AUTH_SLICE_KEY]: authSlice.reducer,
+  [USERS_SLICE_KEY]: usersSlice.reducer,
+  [HEROES_SLICE_KEY]: heroSlice.reducer,
 };
 
 const persistConfig = {

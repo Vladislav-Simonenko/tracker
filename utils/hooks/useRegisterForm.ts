@@ -12,6 +12,7 @@ import {
 } from "../validation";
 import { ObjectSchema } from "yup";
 import { toastNotify } from "..";
+import { useRouter } from "next/navigation";
 
 export type TUseRegisterForm = {
   initialFormValues: RegisterUserDto;
@@ -25,9 +26,11 @@ export const useRegisterForm = (): TUseRegisterForm => {
   const [loginRequest, { isLoading, error }] =
     useAuthControllerRegisterMutation();
 
+  const router = useRouter();
+
   const dispatch = useAppDispatch();
   const initialFormValues: RegisterUserDto = {
-    email: "uswer@example.com",
+    email: "user@example.com",
     password: "password123",
     confirmPassword: "password123",
     login: "test123",
@@ -46,8 +49,10 @@ export const useRegisterForm = (): TUseRegisterForm => {
       toastNotify({
         toastType: "success",
         error: null,
-        message: "Успешная регистация",
+        message: "Успешная регистация! Проверьте почту для завершения.",
       });
+
+      router?.push("/");
     } catch (error: any) {
       toastNotify({
         toastType: "error",
