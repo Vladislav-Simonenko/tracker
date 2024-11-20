@@ -7,3 +7,4 @@ export * from "./tableHead";
 export * from "./tableRows";
 export * from "./userChangeAction";
 export * from "./characterCoins";
+export * from "./healthBar";

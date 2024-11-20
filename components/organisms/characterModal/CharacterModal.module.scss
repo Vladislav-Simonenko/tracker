@@ -1,0 +1,56 @@
+.characterContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  outline: 1px solid black;
+
+  .characterHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background-color: lightgray;
+    gap: 24px;
+
+    .characterHeaderImage {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: darkgray;
+    }
+
+    .characterMainInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      h2 {
+        font-size: 24px;
+        color: black;
+      }
+
+      p {
+        font-size: 18px;
+        color: black;
+      }
+    }
+  }
+
+  .characterBody {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+  }
+
+  .characterFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background-color: lightgray;
+  }
+}

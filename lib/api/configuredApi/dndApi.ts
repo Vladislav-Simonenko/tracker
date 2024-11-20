@@ -2123,6 +2123,68 @@ export type RefreshTokenDto = {
   /** Refresh token */
   refreshToken: string;
 };
+export type GetArmorDto = {
+  name_rus: string;
+  name_eng: string;
+  type: number;
+  base_ac: string;
+  ac: string;
+  price: string;
+  source: string;
+  weight: number;
+  description: string;
+  duration: string;
+  disadvantage: boolean;
+  requirement: string;
+  homebrew: boolean;
+  icon: string;
+  id: string;
+};
+export type GetRaceDto = {
+  id: number;
+  name: string;
+  icon: string;
+  description: string;
+  speed: number;
+};
+export type GetShieldDto = {
+  name_rus: string;
+  name_eng: string;
+  type: number;
+  base_ac: string;
+  ac: string;
+  price: string;
+  source: string;
+  weight: number;
+  description: string;
+  duration: string;
+  disadvantage: boolean;
+  requirement: string;
+  homebrew: boolean;
+  icon: string;
+  id: string;
+};
+export type GetSubraceDto = {
+  id: number;
+  name: string;
+  race_id: number;
+  icon: string;
+  description: string;
+  speed: number;
+  features_done: boolean;
+};
+export type GetWpDto = {
+  id: string;
+  name: string;
+  description: string;
+};
+export type GetWorldDto = {
+  id: string;
+  created_at: string;
+  user_id: string;
+  name: string;
+  sources: string[];
+};
 export type GetHeroByIdDto = {
   id: number;
   name: string;
@@ -2162,6 +2224,15 @@ export type GetHeroByIdDto = {
   armor_bonus: number;
   experience: number;
   warlock_pact_id: number;
+  armors_heroes_armor_idToarmors: GetArmorDto;
+  races: GetRaceDto;
+  armors_heroes_shield_idToarmors: GetShieldDto;
+  subraces: GetSubraceDto;
+  warlock_pacts: GetWpDto;
+  worlds: GetWorldDto;
+  languages: string[];
+  tools: string[];
+  user: GetUserDto;
 };
 export type DeleteHeroDto = {
   id: number;
