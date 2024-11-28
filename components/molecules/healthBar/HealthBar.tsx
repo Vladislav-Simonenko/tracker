@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import { Progress, Tooltip } from "@mantine/core";
 
 import styles from "./HealthBar.module.scss";
+import { HealthButtons } from "@/components";
 
 interface IHealthBarProps {
   currentPercent: number;
@@ -11,6 +12,7 @@ interface IHealthBarProps {
   effectiveCurrent: number;
   buffHp: number;
   tempHp: number;
+  heroId: number;
 }
 
 export const HealthBar: FC<IHealthBarProps> = (props) => {
@@ -21,24 +23,30 @@ export const HealthBar: FC<IHealthBarProps> = (props) => {
     effectiveCurrent,
     buffHp,
     tempHp,
+    heroId,
   } = props;
-  const [opened, setOpened] = useState(true);
+  const [opened, setOpened] = useState(false);
 
   return (
-    <Progress.Root className={styles.healthBarContainer}>
-      <Tooltip
+    <div style={{ width: "100%" }}>
+      <Progress.Root
         onClick={() => setOpened((open) => !open)}
-        opened={opened}
-        transitionProps={{ transition: "scale", duration: 300 }}
-        label={`Основное - ${effectiveCurrent}, Забафанное - ${buffHp}, Временное - ${tempHp}`}
+        className={styles.healthBarContainer}
       >
-        <Progress.Section
-          value={currentPercent}
-          color="green"
-        ></Progress.Section>
-      </Tooltip>
-      <Progress.Section value={buffPercent} color="blue"></Progress.Section>
-      <Progress.Section value={tempPercent} color="red"></Progress.Section>
-    </Progress.Root>
+        <Tooltip
+          opened={opened}
+          transitionProps={{ transition: "scale", duration: 300 }}
+          label={`Основное - ${effectiveCurrent}, Забафанное - ${buffHp}, Временное - ${tempHp}`}
+        >
+          <Progress.Section
+            value={currentPercent}
+            color="green"
+          ></Progress.Section>
+        </Tooltip>
+        <Progress.Section value={buffPercent} color="blue"></Progress.Section>
+        <Progress.Section value={tempPercent} color="red"></Progress.Section>
+      </Progress.Root>
+      <HealthButtons heroId={heroId} />
+    </div>
   );
 };

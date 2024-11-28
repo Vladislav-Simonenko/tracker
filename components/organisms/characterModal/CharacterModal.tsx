@@ -1,6 +1,5 @@
 "use client";
-import React, { FC } from "react";
-import { useHeroById } from "@/lib";
+import React, { FC, useEffect, useState } from "react";
 import { CharacterCoins, HealthBar, ImageContainer } from "@/components";
 import {
   calculateHealthSegments,
@@ -10,6 +9,8 @@ import {
 
 import styles from "./CharacterModal.module.scss";
 import Image from "next/image";
+import socket from "@/lib/socket";
+import { useHeroById } from "@/lib";
 
 interface ICharacterModalProps {
   id: number;
@@ -17,7 +18,38 @@ interface ICharacterModalProps {
 
 export const CharacterModal: FC<ICharacterModalProps> = (props) => {
   const { id } = props;
-  const { hero, isLoading, error } = useHeroById(id);
+
+  const { heroList, isLoading, error } = useHeroById(id);
+  const [hero, setHero] = useState<any>(null);
+
+  useEffect(() => {
+    if (heroList && !isLoading && !error) {
+      setHero(heroList);
+    }
+  }, [heroList, isLoading, error]);
+
+  useEffect(() => {
+    socket.on("heroUpdated", (updatedHero) => {
+      if (updatedHero.id === id) {
+        setHero((prevHero: any) => ({
+          ...prevHero,
+          ...updatedHero,
+        }));
+      }
+    });
+
+    return () => {
+      socket.off("heroUpdated");
+    };
+  }, [id]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error || !hero) {
+    return <div>Error loading character data</div>;
+  }
 
   const coins = {
     copper_coins: hero?.copper_coins || 0,
@@ -39,11 +71,6 @@ export const CharacterModal: FC<ICharacterModalProps> = (props) => {
     totalHp,
     effectiveCurrent,
   } = calculateHealthSegments(currentHp, maxHp, buffHp, tempHp);
-  console.log(effectiveCurrent);
-
-  if (isLoading) {
-    return <div>loading</div>;
-  }
 
   return (
     <div className={styles.characterContainer}>
@@ -53,15 +80,15 @@ export const CharacterModal: FC<ICharacterModalProps> = (props) => {
         </div>
         <div className={styles.characterMainInfo}>
           <h2>{hero?.name}</h2>
-          <h3>
-            {hero?.races.name} {hero?.subraces.name}
-          </h3>
+          <h2>
+            {hero?.races?.name} {hero?.subraces?.name}
+          </h2>
           <h4>Опыт: {hero?.experience}</h4>
           <h4>Уровень: {calculateLevel(hero?.experience || 0)}</h4>
         </div>
       </div>
       <div className={styles.characterBody}>
-        <CharacterCoins coins={coins} />
+        <CharacterCoins coins={coins} heroId={id} />
         <HealthBar
           currentPercent={currentPercent}
           buffPercent={buffPercent}
@@ -69,6 +96,7 @@ export const CharacterModal: FC<ICharacterModalProps> = (props) => {
           effectiveCurrent={effectiveCurrent}
           buffHp={buffHp}
           tempHp={tempHp}
+          heroId={id}
         />
         <p>Всего хп: {totalHp}</p>
         <Image

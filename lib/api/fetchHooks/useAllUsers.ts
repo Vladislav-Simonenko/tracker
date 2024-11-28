@@ -1,3 +1,4 @@
+"use client";
 import { setUsersClients, useUsersControllerFindAllQuery } from "@/lib";
 import { useIsAuthorized } from "@/lib/store/auth";
 import { useEffect } from "react";

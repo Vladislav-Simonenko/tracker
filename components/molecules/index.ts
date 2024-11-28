@@ -8,3 +8,4 @@ export * from "./tableRows";
 export * from "./userChangeAction";
 export * from "./characterCoins";
 export * from "./healthBar";
+export * from "./healthButtons";

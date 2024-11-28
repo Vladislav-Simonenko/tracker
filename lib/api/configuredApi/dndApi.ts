@@ -168,6 +168,56 @@ const injectedRtkApi = api.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    heroControllerApplyDamage: build.mutation<
+      HeroControllerApplyDamageApiResponse,
+      HeroControllerApplyDamageApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/heroes/${queryArg.id}/damage`,
+        method: "PUT",
+        body: queryArg.getDamageDto,
+      }),
+    }),
+    heroControllerApplyHealing: build.mutation<
+      HeroControllerApplyHealingApiResponse,
+      HeroControllerApplyHealingApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/heroes/${queryArg.id}/heal`,
+        method: "PUT",
+        body: queryArg.getHealingDto,
+      }),
+    }),
+    heroControllerAddTempHp: build.mutation<
+      HeroControllerAddTempHpApiResponse,
+      HeroControllerAddTempHpApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/heroes/${queryArg.id}/temp-hp`,
+        method: "PUT",
+        body: queryArg.addTempHpDto,
+      }),
+    }),
+    heroControllerAddBuffHp: build.mutation<
+      HeroControllerAddBuffHpApiResponse,
+      HeroControllerAddBuffHpApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/heroes/${queryArg.id}/buff-hp`,
+        method: "PUT",
+        body: queryArg.addBuffHpDto,
+      }),
+    }),
+    heroControllerAddCoins: build.mutation<
+      HeroControllerAddCoinsApiResponse,
+      HeroControllerAddCoinsApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/api/heroes/${queryArg.id}/add-coins`,
+        method: "PUT",
+        body: queryArg.addCoinsDto,
+      }),
+    }),
     raceControllerGetAllRaces: build.query<
       RaceControllerGetAllRacesApiResponse,
       RaceControllerGetAllRacesApiArg
@@ -1312,6 +1362,41 @@ export type HeroControllerDeleteHeroApiArg = {
   /** ID героя */
   id: number;
 };
+export type HeroControllerApplyDamageApiResponse = unknown;
+export type HeroControllerApplyDamageApiArg = {
+  /** ID героя */
+  id: number;
+  /** Применить урон к герою */
+  getDamageDto: GetDamageDto;
+};
+export type HeroControllerApplyHealingApiResponse = unknown;
+export type HeroControllerApplyHealingApiArg = {
+  /** ID героя */
+  id: number;
+  /** Применить лечение к герою */
+  getHealingDto: GetHealingDto;
+};
+export type HeroControllerAddTempHpApiResponse = unknown;
+export type HeroControllerAddTempHpApiArg = {
+  /** ID героя */
+  id: number;
+  /** Добавить временные хп герою */
+  addTempHpDto: AddTempHpDto;
+};
+export type HeroControllerAddBuffHpApiResponse = unknown;
+export type HeroControllerAddBuffHpApiArg = {
+  /** ID героя */
+  id: number;
+  /** Добавить баффированные хп герою */
+  addBuffHpDto: AddBuffHpDto;
+};
+export type HeroControllerAddCoinsApiResponse = unknown;
+export type HeroControllerAddCoinsApiArg = {
+  /** ID героя */
+  id: number;
+  /** Добавить монеты к герою */
+  addCoinsDto: AddCoinsDto;
+};
 export type RaceControllerGetAllRacesApiResponse = unknown;
 export type RaceControllerGetAllRacesApiArg = void;
 export type RaceControllerCreateraceApiResponse = unknown;
@@ -2237,6 +2322,34 @@ export type GetHeroByIdDto = {
 export type DeleteHeroDto = {
   id: number;
 };
+export type GetDamageDto = {
+  /** The amount of damage to apply to the hero */
+  damage: number;
+};
+export type GetHealingDto = {
+  /** Healing value */
+  healing: number;
+};
+export type AddTempHpDto = {
+  /** Количество временных хп для добавления */
+  tempHp: number;
+};
+export type AddBuffHpDto = {
+  /** Количество баффированных хп для добавления */
+  buffHp: number;
+};
+export type AddCoinsDto = {
+  /** copper_coins */
+  copper?: number;
+  /** silver_coins */
+  silver?: number;
+  /** electrum_coins */
+  electrum?: number;
+  /** gold_coins */
+  gold?: number;
+  /** platinum_coins */
+  platinum?: number;
+};
 export type CreateTraitDto = {
   /** Unique ID of the trait */
   id: string;
@@ -2650,6 +2763,11 @@ export const {
   useHeroControllerGetHeroByIdQuery,
   useHeroControllerUpdateHeroMutation,
   useHeroControllerDeleteHeroMutation,
+  useHeroControllerApplyDamageMutation,
+  useHeroControllerApplyHealingMutation,
+  useHeroControllerAddTempHpMutation,
+  useHeroControllerAddBuffHpMutation,
+  useHeroControllerAddCoinsMutation,
   useRaceControllerGetAllRacesQuery,
   useRaceControllerCreateraceMutation,
   useRaceControllerGetRaceByIdQuery,

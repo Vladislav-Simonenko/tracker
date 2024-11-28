@@ -1,14 +1,15 @@
+"use client";
+
 import {
   setHeroById,
   useAppDispatch,
   useHeroControllerGetHeroByIdQuery,
-  UsersControllerFindOneApiArg,
 } from "@/lib";
 import { useEffect } from "react";
 
 export const useHeroById = (id: number) => {
   const {
-    data: hero,
+    data: heroList,
     isLoading,
     error,
     refetch,
@@ -17,13 +18,13 @@ export const useHeroById = (id: number) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (hero) {
-      dispatch(setHeroById(hero));
+    if (heroList) {
+      dispatch(setHeroById(heroList));
     }
-  }, [hero]);
+  }, [heroList]);
 
   return {
-    hero: hero || null,
+    heroList: heroList || null,
     isLoading,
     error,
     refetch,
