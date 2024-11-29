@@ -14,34 +14,20 @@ import { useHeroById } from "@/lib";
 
 interface ICharacterModalProps {
   id: number;
+  hero: any;
+  setHero: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const CharacterModal: FC<ICharacterModalProps> = (props) => {
-  const { id } = props;
+  const { id, hero, setHero } = props;
 
   const { heroList, isLoading, error } = useHeroById(id);
-  const [hero, setHero] = useState<any>(null);
 
   useEffect(() => {
     if (heroList && !isLoading && !error) {
       setHero(heroList);
     }
   }, [heroList, isLoading, error]);
-
-  useEffect(() => {
-    socket.on("heroUpdated", (updatedHero) => {
-      if (updatedHero.id === id) {
-        setHero((prevHero: any) => ({
-          ...prevHero,
-          ...updatedHero,
-        }));
-      }
-    });
-
-    return () => {
-      socket.off("heroUpdated");
-    };
-  }, [id]);
 
   if (isLoading) {
     return <div>Loading...</div>;
