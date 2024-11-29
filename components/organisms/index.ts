@@ -5,3 +5,4 @@ export * from "./loginForm";
 export * from "./changeEmail";
 export * from "./changePass";
 export * from "./userChangeActions";
+export * from "./heroTabs";
