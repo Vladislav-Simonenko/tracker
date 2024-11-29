@@ -9,17 +9,15 @@ interface IImageContainerProps {
 export const ImageContainer: FC<IImageContainerProps> = (props) => {
   const { imagePath } = props;
 
-  // If imagePath is undefined or an empty string, fallback to a default or empty URL
   const baseUrl = "http://localhost:3000";
   const fullPath = imagePath
     ? imagePath.startsWith("http")
       ? imagePath
       : `${baseUrl}${imagePath}`
-    : ""; // Or use a fallback URL like `baseUrl + "/default-image.jpg"`
+    : "";
 
-  // Optional: Check if fullPath is valid
   if (!fullPath) {
-    return <p>No image available</p>; // or any fallback UI
+    return <p>No image available</p>;
   }
 
   return (

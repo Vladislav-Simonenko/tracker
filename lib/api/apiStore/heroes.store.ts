@@ -6,10 +6,11 @@ import {
   HeroControllerAddTempHpApiResponse,
   HeroControllerAddBuffHpApiResponse,
   AddCoinsDto,
+  GetHeroByIdDto,
 } from "@/lib/api";
 
 export interface HeroesState {
-  heroById?: any;
+  heroById?: GetHeroByIdDto;
   damageData?: HeroControllerApplyDamageApiResponse;
   healingData?: HeroControllerApplyHealingApiResponse;
   tempHpData?: HeroControllerAddTempHpApiResponse;

@@ -9,3 +9,4 @@ export * from "./userChangeAction";
 export * from "./characterCoins";
 export * from "./healthBar";
 export * from "./healthButtons";
+export * from "./heroStats";
